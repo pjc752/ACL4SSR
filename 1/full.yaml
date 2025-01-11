@@ -492,6 +492,7 @@ rule-providers:
     type: http
 
 rules:
+  - DOMAIN-SUFFIX,tw,🇨🇳 台湾节点
   - "RULE-SET,LocalAreaNetwork,🎯 全球直连"
   - "RULE-SET,UnBan,🎯 全球直连"
   - "RULE-SET,BanAD,🛑 广告拦截"
