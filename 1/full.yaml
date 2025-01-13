@@ -492,6 +492,8 @@ rule-providers:
     type: http
 
 rules:
+  - DOMAIN-KEYWORD,hhan.club,🎯 全球直连
+  - DOMAIN-KEYWORD,hhclub,🎯 全球直连
   - DOMAIN-SUFFIX,tw,🇨🇳 台湾节点
   - "RULE-SET,LocalAreaNetwork,🎯 全球直连"
   - "RULE-SET,UnBan,🎯 全球直连"
