@@ -1,40 +1,32 @@
-name: Sync with Upstream
+name: Sync Fork
 
 on:
   schedule:
-    - cron: '0 2 * * *' # 每天凌晨 2 点运行
-  workflow_dispatch: # 手动触发
+    - cron: '0 0 * * *'  # 每天 UTC 时间 00:00 运行
+  workflow_dispatch: # 允许手动触发 workflow
 
 jobs:
   sync:
     runs-on: ubuntu-latest
-
     steps:
-    # 检出代码
-    - name: Checkout Repository
-      uses: actions/checkout@v3
-      with:
-        persist-credentials: false # 禁用默认的 GitHub 凭据
-        fetch-depth: 0 # 获取完整的 Git 历史
+      - name: Checkout current repository
+        uses: actions/checkout@v3
+        with:
+          ref: master  # 检出 master 分支
 
-    # 添加原始仓库为远程
-    - name: Add Upstream Remote
-      run: |
-        git remote add upstream https://github.com/ACL4SSR/ACL4SSR.git
-        git fetch upstream
-        git checkout main
-        git merge upstream/main --no-commit --no-ff
+      - name: Configure Git
+        run: |
+          git config --global user.name "${GITHUB_ACTOR}"
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
-    # 排除自定义文件夹
-    - name: Exclude Custom Folder
-      run: |
-        git reset HEAD my-folder
-        git checkout -- my-folder
+      - name: Add upstream repository
+        run: git remote add upstream https://github.com/ACL4SSR/ACL4SSR.git
 
-    # 提交合并
-    - name: Commit and Push Changes
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        git commit -m "Sync with upstream while keeping custom folder"
-        git push origin main
+      - name: Fetch upstream changes
+        run: git fetch upstream
+
+      - name: Merge upstream changes
+        run: git merge upstream/master --strategy-option='ours'
+
+      - name: Push changes to fork
+        run: git push origin master  # 推送到你的 master 分支
