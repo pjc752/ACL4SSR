@@ -496,6 +496,7 @@ rules:
   - DOMAIN-KEYWORD,hhclub,🎯 全球直连
   - DOMAIN-KEYWORD,hhan,🎯 全球直连
   - DOMAIN-SUFFIX,tw,🇨🇳 台湾节点
+  - DOMAIN-SUFFIX,cn,🎯 全球直连
   - "RULE-SET,LocalAreaNetwork,🎯 全球直连"
   - "RULE-SET,UnBan,🎯 全球直连"
   - "RULE-SET,BanAD,🛑 广告拦截"
