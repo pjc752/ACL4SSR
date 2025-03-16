@@ -492,7 +492,7 @@ rule-providers:
     type: http
 
 rules:
-  - "DOMAIN-SUFFIX,hltv.org,🚀 节点选择"
+  - "DOMAIN,hltv.org,🚀 节点选择"
   - "DOMAIN-KEYWORD,hhan.club,🎯 全球直连"
   - "DOMAIN-KEYWORD,hhclub,🎯 全球直连"
   - "DOMAIN-KEYWORD,hhan,🎯 全球直连"
